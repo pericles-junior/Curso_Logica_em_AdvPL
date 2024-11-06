@@ -17,6 +17,7 @@ User Function zLogi08()
     Local aPessoa := {}
     Local nAtual
     Local nPos
+    Local cDataFormatada
 	
     aAdd(aNomes, "Daniel")
     aAdd(aNomes, "Terminal")
@@ -28,23 +29,27 @@ User Function zLogi08()
     aAdd(aPessoa, {"Daniel", sToD("19930712"), "Bauru"})
     aAdd(aPessoa, {"Joao", sToD("19910131"), "Agudos"})
     aAdd(aPessoa, {"Maria", sToD("19921231"), "Piratininga"})
+    aAdd(aPessoa, {"Péricles", sToD("20000128"), "Irecê"})
 
     For nAtual := 1 To Len(aPessoa)
-        //Alert(aPessoa[nAtual][1] + " nasceu no dia " + dToS(aPessoa[nAtual][2]) + " em " + aPessoa[nAtual][3])
+        // cDataFormatada := DTOC(aPessoa[nAtual][2],"dd/MM/yyyy") Formas de manipular data de um array
+        // cDataFormatada := Transform(aPessoa[nAtual][2], "@E 99/99/9999")
+        cDataFormatada := StrZero(Day(aPessoa[nAtual][2]), 2) + "/" + StrZero(Month(aPessoa[nAtual][2]), 2) + "/" + Str(Year(aPessoa[nAtual][2]), 4)
+        // Alert(aPessoa[nAtual][1] + " nasceu no dia " + cDataFormatada + " em " + aPessoa[nAtual][3])
     Next
 
     //Inserindo elemento no Array
-    aSize(aPessoa, Len(aPessoa) + 1)
-    aIns(aPessoa, 1)
-    aPessoa[1] := {"Terminal de Informacao", sToD("20120808"), "Internet"}
-    //Alert("Linha 2, Coluna 1: " + aPessoa[2][1])
+    // aSize(aPessoa, Len(aPessoa) + 1)
+    // aIns(aPessoa, 4)
+    // aPessoa[4] := {"Terminal de Informacao", sToD("20120808"), "Internet"}
+    // Alert("Linha 2, Coluna 1: " + aPessoa[2][1])
 
     //Procurando um elemento no array
     nPos := aScan(aPessoa, {|x| AllTrim(Upper(x[1])) == "JOAO"})
     If nPos > 0
-        //MsgInfo("Joao encontrado, na linha " + cValToChar(nPos) + ".", "Atencao")
+        // MsgInfo("Vanuzia encontrado, na linha " + cValToChar(nPos) + ".", "Atencao")
     Else
-        //MsgAlert("Joao nao foi encontrado!", "Atencao")
+        // MsgAlert("Vanuzia nao foi encontrado!", "Atencao")
     EndIf
 
     //Excluindo elemento no 
